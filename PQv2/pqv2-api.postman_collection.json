@@ -1,0 +1,120 @@
+{
+	"info": {
+		"_postman_id": "9aac7fa5-cf3a-4239-a16d-d729b511ee66",
+		"name": "pqv2/api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"_postman_id": "c20ba9a6-15e8-4781-881c-77eb7654038b",
+			"name": "Get token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "77e8b1fc-6619-41a2-999c-316b8259e0d7",
+						"type": "text/javascript",
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"access_token\", data.access_token);",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"token_type is Bearer\"] = jsonData.token_type === \"Bearer\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"sessionValue": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "client",
+							"sessionValue": "client",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret",
+							"sessionValue": "secret",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:5000/connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "e4d74621-e1a1-47ed-a0fc-695754739059",
+			"name": "Get api data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5001/identity",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"identity"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"_postman_id": "99430d06-18a7-47a8-90b3-db8c076f4cd4",
+			"name": "api/countries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": ""
+				},
+				"description": "request to countries"
+			},
+			"response": []
+		}
+	]
+}
