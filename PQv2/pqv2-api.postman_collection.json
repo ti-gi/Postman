@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b55ce867-fb94-4f1f-a478-ab6e14cb62c3",
+		"_postman_id": "b7ee8138-9c0b-40ce-b9e6-e86c6990f5e5",
 		"name": "pqv2/api",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -67,7 +67,7 @@
 			"response": []
 		},
 		{
-			"name": "Get countries",
+			"name": "Get single country",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -90,6 +90,54 @@
 					"path": [
 						"api",
 						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get countries paged",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:5001/api/countries?pageNumber=1&pageSize=15&orderBy=name desc&searchQuery=zi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"countries"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "1"
+						},
+						{
+							"key": "pageSize",
+							"value": "15"
+						},
+						{
+							"key": "orderBy",
+							"value": "name desc"
+						},
+						{
+							"key": "searchQuery",
+							"value": "zi"
+						}
 					]
 				}
 			},
